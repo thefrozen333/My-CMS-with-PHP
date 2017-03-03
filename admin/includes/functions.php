@@ -1,4 +1,12 @@
 <?php
+
+function confirm_query($query_result){
+    global $connection;
+    if(!$query_result)
+       die("QUERY FAILED " . mysqli_error($connection));
+
+}
+
 //Create category
 function create_category(){
     global $connection;
@@ -50,4 +58,5 @@ function delete_category(){
         header("Location: categories.php");
     }                                       
 }
+
 ?>

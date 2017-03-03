@@ -25,8 +25,7 @@
                         $query = "UPDATE category SET Name = '{$update_cat_title}' WHERE Id = {$cat_id}";
                         
                         $update_query = mysqli_query($connection, $query);
-                        if(!$update_query)
-                            die("Query failed" . mysqli_error($connection));
+                        confirm_query($update_query);
                                     
                      }
                     ?> 

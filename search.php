@@ -24,8 +24,7 @@
            $query = "SELECT * FROM posts
                      WHERE Tags LIKE '%$search_string%'";
            $search_query = mysqli_query($connection, $query);
-           if(!$search_query)
-               die("QUERY FAILED!" . mysqli_error($connection));
+           confirm_query($search_query);
             
            if(mysqli_num_rows($search_query) == 0)
                echo "<h1>No results found</h1>";
