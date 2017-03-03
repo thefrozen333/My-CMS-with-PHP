@@ -1,5 +1,6 @@
 <?php 
     if(isset($_POST['admin_create_post'])){
+        
         $post_title = $_POST['post_title'];
         $post_author = $_POST['post_author'];
         $post_category_id = $_POST['post_category_id'];
@@ -21,10 +22,11 @@
         $query .= "VALUES($post_category_id, '$post_title', 
                   '$post_author', now(), '$post_image', 
                   '$post_content', '$post_tags', 
-                   $post_comment_count, '$post_status' ,)";
+                   $post_comment_count, '$post_status')";
         
         $create_post_query = mysqli_query($connection, $query);
         confirm_query($create_post_query);
+        header("Location: posts.php");
     }
 
 ?>

@@ -38,7 +38,7 @@
                                 <a href="posts.php"><i class="fa fa-fw fa fa-eye"></i>  View All Posts</a>
                             </li>
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-paste"></i> Add Posts</a>
+                                <a href="posts.php?source=add_post"><i class="glyphicon glyphicon-paste"></i> Add Posts</a>
                             </li>
                         </ul>
                     </li>
