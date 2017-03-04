@@ -3,7 +3,7 @@
         
         $post_title = $_POST['post_title'];
         $post_author = $_POST['post_author'];
-        $post_category_id = $_POST['post_category_id'];
+        $post_category = $_POST['post_category'];
         $post_status = $_POST['post_status'];
         
         $post_image = $_FILES['image']['name'];
@@ -19,7 +19,7 @@
         $query = "INSERT INTO posts(CategoryId, Title, 
                     Author, Date, Image, 
                     Content, Tags, CommentCount, Status) ";
-        $query .= "VALUES($post_category_id, '$post_title', 
+        $query .= "VALUES($post_category, '$post_title', 
                   '$post_author', now(), '$post_image', 
                   '$post_content', '$post_tags', 
                    $post_comment_count, '$post_status')";
@@ -41,9 +41,23 @@
         <input type="text" class="form-control" name="post_title">
     </div>
     
-    <div class="form-group">
-        <label for="post_category_id">Post Category Id</label>
-        <input type="text" class="form-control" name="post_category_id">
+      <div class="form-group">
+        <label for="post_category">Post Category</label>
+        <select name="post_category" id="">
+            <?php
+                 $query = "SELECT * FROM category";
+                 $select_categories = mysqli_query($connection, $query); 
+                 confirm_query($select_categories);
+   
+                 while($row = mysqli_fetch_assoc($select_categories)){
+                 $cat_id = $row['Id'];
+                 $cat_title = $row['Name']; 
+                     
+                 echo "<option value='$cat_id'>$cat_title</option>";
+             }
+            ?>
+            
+        </select>
     </div>
     
     <div class="form-group">
