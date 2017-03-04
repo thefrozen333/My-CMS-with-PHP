@@ -3,14 +3,15 @@
                                    <label for="cat_title">Edit Category</label>
                                    
                                <?php 
-                                      if(isset($_GET['edit'])){
-                                      $edit_cat_id = $_GET['edit'];
-                                      $query = "SELECT * FROM category WHERE Id = {$edit_cat_id}";
-                                      $select_categories_edit = mysqli_query($connection, $query); 
+                              if(isset($_GET['edit'])){
+                                  $edit_cat_id = $_GET['edit'];
+                                  
+                                  $query = "SELECT * FROM category WHERE Id = {$edit_cat_id}";
+                                  $select_categories_edit = mysqli_query($connection, $query); 
 
-                                      while($row = mysqli_fetch_assoc($select_categories_edit)){
-                                      $cat_id = $row['Id'];
-                                      $cat_title = $row['Name'];   
+                                  while($row = mysqli_fetch_assoc($select_categories_edit)){
+                                  $cat_id = $row['Id'];
+                                  $cat_title = $row['Name'];   
                                           
                                        ?>   
               <input value="<?php if(isset($cat_title)) echo $cat_title;?>" class="form-control" type="text" name="cat_title"> 
