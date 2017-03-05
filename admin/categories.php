@@ -54,11 +54,12 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Category Title</th>
-                                        <th>Operations</th>
+                                        <th>Delete</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                  <?php  get_all_categories();?>
+                  <?php get_all_categories();?>
                   <?php delete_category();?>
                                 </tbody>
                             </table>

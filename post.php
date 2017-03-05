@@ -17,11 +17,10 @@
                 
                 
                 <?php 
-    
+            //Render clicked post(this is the post's full page with comments) 
             if(isset($_GET['p_id'])){
-                $clicked_post_id = $_GET['p_id'];
+                   $clicked_post_id = $_GET['p_id'];
             }
-                
                     $query = "SELECT * FROM posts WHERE Id = $clicked_post_id";
                     $select_all_posts = mysqli_query($connection, $query);
                     
@@ -34,10 +33,6 @@
                         
                  ?>
                         
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
 
                 <!-- First Blog Post -->
                 <h2>
@@ -51,22 +46,43 @@
                 <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
                 
-                <?php } ?>
+                <?php }?>
                 
  <!-- Blog Comments -->
 
+
+               <?php 
+                    if(isset($_POST['create_comment'])){
+                        $comment_author = $_POST['comment_author'];
+                        echo "<h1>$comment_author</h1>";
+                    }
+                
+                ?>
+               
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Leave a Comment:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                    <form action="" method="post" role="form">
+                       
+                       <div class="form-group">
+                           <label for="comment_author">Author</label>
+                            <input type="text" class="form-control" name="comment_author">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                       
+                       <div class="form-group">
+                           <label for="comment_email">E-mail</label>
+                            <input type="email" class="form-control" name="comment_email">
+                        </div>
+                       
+                        <div class="form-group">
+                           <label for="comment_text">Comment</label>
+                            <textarea class="form-control" rows="3" name="comment_text"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" name="create_comment">Submit</button>
                     </form>
                 </div>
 

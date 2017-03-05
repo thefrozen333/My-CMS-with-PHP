@@ -1,8 +1,10 @@
   <form action="" method="post">
-                                <div class="form-group">
-                                   <label for="cat_title">Edit Category</label>
+                    <div class="form-group">
+                           <label for="cat_title">Edit Category</label>
                                    
-                               <?php 
+                       <?php 
+                        //if edit on category is clicked get it's id
+                        //make a query and fill data in an input field that pops up on the left
                               if(isset($_GET['edit'])){
                                   $edit_cat_id = $_GET['edit'];
                                   

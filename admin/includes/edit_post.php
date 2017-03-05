@@ -2,6 +2,7 @@
    if(isset($_GET['p_id'])){
        $post_id_edit = $_GET['p_id'];
    }
+        //Get data from DB to fill current post info before admin makes changes
         $query = "SELECT * FROM posts WHERE $post_id_edit = Id";
         $select_posts_id = mysqli_query($connection, $query);
 
@@ -15,9 +16,11 @@
         $post_tags = $row['Tags'];
         $post_comment_count = $row['CommentCount'];
         $post_date = $row['Date'];
+        //
     }
 
-
+    //if update post is clicked get info from form fields and update DB
+    //Then move admin to posts.php where he can see all posts with the changed one 
     if(isset($_POST['update_post'])){
         
         $post_title = $_POST['post_title'];
@@ -60,7 +63,7 @@
    
 
    
-   
+  <!--Put data from DB in the form for selected for edit post -->
    <form action="" method="post" enctype="multipart/form-data">
     
     <div class="form-group">

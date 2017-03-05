@@ -29,7 +29,7 @@
                     
                    
                    <?php 
-                    
+                    //Add categories to the top nav in index front page
                     $query = "SELECT * FROM category";
                     $select_all_categories = mysqli_query($connection, $query);
                     

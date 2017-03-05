@@ -19,17 +19,14 @@
     
          <!-- Blog Categories Well -->
          <div class="well">
-                   
-       <?php 
-                
-                $query = "SELECT * FROM category";
-                $select_categories_sidebar = mysqli_query($connection, $query);                
-        ?>
              <h4>Blog Categories</h4>
              <div class="row">
                  <div class="col-lg-12">
                      <ul class="list-unstyled">
      <?php
+            //fill side widget with categories from DB
+                $query = "SELECT * FROM category";
+                $select_categories_sidebar = mysqli_query($connection, $query);          
                         while($row = mysqli_fetch_assoc($select_categories_sidebar)){
                         $cat_title = $row['Name'];
                         $cat_id = $row['Id'];

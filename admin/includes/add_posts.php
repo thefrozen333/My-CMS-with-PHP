@@ -1,4 +1,6 @@
 <?php 
+    //Get data from form and insert it into DB
+    //Redirect admin to posts.php which triggers view_all_posts.php
     if(isset($_POST['admin_create_post'])){
         
         $post_title = $_POST['post_title'];
@@ -45,6 +47,7 @@
         <label for="post_category">Post Category</label>
         <select name="post_category" id="">
             <?php
+                //Fill options in select with categories from DB
                  $query = "SELECT * FROM category";
                  $select_categories = mysqli_query($connection, $query); 
                  confirm_query($select_categories);

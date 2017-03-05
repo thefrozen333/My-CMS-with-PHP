@@ -18,7 +18,7 @@
                 
                 
                 <?php 
-                
+        //Render posts that match the tag from search or if no render no results found        
      if(isset($_POST['submit'])){  
            $search_string = $_POST['search'];
            $query = "SELECT * FROM posts
@@ -39,11 +39,6 @@
                         
                  ?>
                         
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
                 <!-- First Blog Post -->
                 <h2>
                     <a href="#"><?php echo $post_title ?></a>

@@ -17,7 +17,7 @@
                 
                 
                 <?php 
-    
+                //Render pots only for the specific category selected from  the side widget
                 if(isset($_GET['category'])){
                     $post_category_id = $_GET['category'];
                 }
@@ -35,11 +35,6 @@
                         
                  ?>
                         
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
                 <!-- First Blog Post -->
                 <h2>
                     <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title ?></a>
