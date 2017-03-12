@@ -53,13 +53,31 @@
                 
  <!-- Blog Comments -->
 
-
-               <?php 
-                    if(isset($_POST['create_comment'])){
-                        $comment_author = $_POST['comment_author'];
-                        echo "<h1>$comment_author</h1>";
-                    }
                 
+               <?php 
+                //If Post comment is clicked take info from form and query to DB
+                    if(isset($_POST['create_comment'])){
+                       $post_id = $_GET['p_id'];
+                       $comment_author = $_POST['comment_author'];
+                       $comment_email = $_POST['comment_email'];
+                       $comment_text = $_POST['comment_text'];
+                        
+                    $query = "INSERT INTO comments (PostId, Author, 
+                    Email, Content, Status, Date) ";
+                        
+                    $query .= "VALUES($post_id, '$comment_author', 
+                    '$comment_email', '$comment_text', 'pending', now())";
+                        
+                    $create_comment_query = mysqli_query($connection, $query);
+                    confirm_query($create_comment_query);
+                        
+                        
+                    $query = "UPDATE posts SET CommentCount = CommentCount + 1
+                             WHERE Id = $post_id" ;  
+                    $update_comment_count = mysqli_query($connection, $query);
+                    confirm_query($update_comment_count);
+                        
+                    }
                 ?>
                
                 <!-- Comments Form -->
@@ -90,45 +108,38 @@
 
                 <!-- Posted Comments -->
 
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        <!-- Nested Comment -->
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Nested Start Bootstrap
-                                    <small>August 25, 2014 at 9:30 PM</small>
-                                </h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-                        <!-- End Nested Comment -->
-                    </div>
-                </div>
+               <?php 
+                    $query = "SELECT * FROM comments WHERE PostId = $clicked_post_id
+                              AND Status = 'approved'
+                              ORDER BY Id DESC";
+                $select_comment_query = mysqli_query($connection, $query);
+                confirm_query($select_comment_query);
                 
+                while($row = mysqli_fetch_array($select_comment_query)){
+                    $comment_date = $row["Date"];
+                    $comment_content = $row["Content"];
+                    $comment_author = $row["Author"];
+                    
+                    ?>
+
+                    <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><?php echo $comment_author ?>
+                            <small><?php echo $comment_date ?></small>
+                        </h4>
+                        <?php echo $comment_content ?> 
+                    </div>
+                </div>  
+                    
+                    
+               <?php } ?>
+               
+               
+                <!-- Comment -->
+                              
             </div>
 
             <!-- Blog Sidebar Widgets Column -->

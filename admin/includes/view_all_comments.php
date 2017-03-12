@@ -18,7 +18,7 @@
                            <?php 
                             //Get all comments and put them in a neat table for the admin to see
                             //Delete, disaprove, approve functionality added
-                                $query = "SELECT c.Email, p.Title, c.Id as CommentId, c.Author as CommentAuthor, c.Content as CommentContent,
+                                $query = "SELECT c.PostId as CommentPostId, c.Email, p.Title, c.Id as CommentId, c.Author as CommentAuthor, c.Content as CommentContent,
                                 c.Status as CommentStatus, c.Date as CommentDate
                                 FROM comments AS c
                                 INNER JOIN posts AS p ON p.Id = c.PostId";
@@ -26,6 +26,7 @@
     
                         while($row = mysqli_fetch_assoc($select_comments)){
                                 $comment_id = $row['CommentId'];
+                                $comment_post_id = $row['CommentPostId'];
                                 //echo "<h1>$comment_id</h1>";
                                 $comment_author = $row['CommentAuthor'];
                                 $comment_content = $row['CommentContent'];
@@ -40,13 +41,14 @@
                             echo "<td>{$comment_content}</td>";
                             echo "<td>{$comment_email}</td>";
                             echo "<td>{$comment_status}</td>";
-                            echo "<td>{$comment_post_name}</td>";
+                            echo "<td><a href='../post.php?p_id=$comment_post_id
+                            '>{$comment_post_name}</a></td>";
                             echo "<td>{$comment_date}</td>";
-                            echo "<td><a href='comments.php?approve
+                            echo "<td><a href='comments.php?approve=$comment_id
                             '>Approve</a></td>";
-                            echo "<td><a href='comments.php?disapprove
+                            echo "<td><a href='comments.php?disapprove=$comment_id
                             '>Disapprove</a></td>";
-                            echo "<td><a href='comments.php?delete
+                            echo "<td><a href='comments.php?delete=$comment_id
                             '>Delete</a></td>";
                             echo "</tr>";
                         }
@@ -54,6 +56,31 @@
                         </tbody>
                     </table>
                     
+        <?php
+            //Disapprove functionality for a comment in admin panel
+            if(isset($_GET['disapprove'])){
+                $update_comment_id = $_GET['disapprove'];
+                $query = "UPDATE comments SET Status = 'disapproved'
+                WHERE Id = $update_comment_id";
+                
+                $update_query = mysqli_query($connection, $query);
+                confirm_query($update_query);
+                header("Location: comments.php");
+            }
+        ?>
+                  
+        <?php
+            //Approve functionality for a comment in admin panel
+            if(isset($_GET['approve'])){
+                 $update_comment_id = $_GET['approve'];
+                $query = "UPDATE comments SET Status = 'approved'
+                WHERE Id = $update_comment_id";
+                
+                $update_query = mysqli_query($connection, $query);
+                confirm_query($update_query);
+                header("Location: comments.php");
+            }
+        ?>
                    
         <?php
             //Delete functionality for a comment in admin panel
