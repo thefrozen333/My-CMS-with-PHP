@@ -28,7 +28,6 @@
                         $post_date = $row['Date'];
                         $post_image = $row['Image'];
                         $post_content = substr($row['Content'], 0, 400);  
-                        
                  ?>
                         
                 <!-- First Blog Post -->

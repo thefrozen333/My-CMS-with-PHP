@@ -59,4 +59,11 @@ function delete_category(){
     }                                       
 }
 
+function funny_image(){
+ $image = '<img src="http://wallpaper.pickywallpapers.com/1400x1050/nyan-cat-cool-art.jpg" alt="some_text" style=height:900px;>';
+
+
+  echo $image;
+}
+
 ?>

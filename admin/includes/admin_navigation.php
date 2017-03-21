@@ -35,7 +35,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-newspaper-o"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts" class="collapse">
                             <li>
-                                <a href="posts.php"><i class="fa fa-fw fa fa-eye"></i>  View All Posts</a>
+                                <a href="posts.php"><i class="glyphicon glyphicon-eye-open"></i>  View All Posts</a>
                             </li>
                             <li>
                                 <a href="posts.php?source=add_post"><i class="glyphicon glyphicon-paste"></i> Add Posts</a>
@@ -52,10 +52,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-user"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#"><i class="fa fa-fw fa fa-eye"></i> View All Users</a>
+                                <a href="users.php"><i class="glyphicon glyphicon-eye-open"></i> View All Users</a>
                             </li>
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-remove"></i> Delete User</a>
+                                <a href="users.php?source=add_user"><i class="glyphicon glyphicon-plus"></i>   Add User</a>
                             </li>
                         </ul>
                     </li>
