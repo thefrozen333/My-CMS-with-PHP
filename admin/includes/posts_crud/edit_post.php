@@ -1,7 +1,8 @@
 <?php 
-   if(isset($_GET['p_id'])){
+   if(isset($_GET['p_id']))
        $post_id_edit = $_GET['p_id'];
-   }
+   
+        global $connection;
         //Get data from DB to fill current post info before admin makes changes
         $query = "SELECT * FROM posts WHERE $post_id_edit = Id";
         $select_posts_id = mysqli_query($connection, $query);

@@ -1,6 +1,6 @@
 <?php 
 include "../includes/db.php";
-include "functions.php";
+include "utilities/functions.php";
 ob_start();
 ?>
 <head>

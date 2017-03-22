@@ -8,6 +8,8 @@
                                 <th>Lastname</th>
                                 <th>E-mail</th>
                                 <th>Role</th>
+                                <th>Switch Role</th>
+                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -36,6 +38,8 @@
                             echo "<td>{$user_lastname}</td>";
                             echo "<td>{$user_email}</td>";
                             echo "<td>{$user_role}</td>";
+                            echo "<td><a href='users.php?switch_role={$user_id}&amp;user_role={$user_role}'>Switch Role</a></td>";
+                            echo "<td><a href='users.php?source=edit_user&amp;edit_user={$user_id}'>Edit</a></td>";
                             echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
                             echo "</tr>";
                         }
@@ -46,33 +50,30 @@
             
                     
         <?php
-            //Disapprove functionality for a comment in admin panel
-            if(isset($_GET['disapprove'])){
-                $update_comment_id = $_GET['disapprove'];
-                $query = "UPDATE comments SET Status = 'disapproved'
-                WHERE Id = $update_comment_id";
+            //Switch user role
+            if(isset($_GET['switch_role'])){
+                $update_user_id = $_GET['switch_role'];
+                $update_user_current_role = $_GET['user_role'];
+                if($update_user_current_role == 'admin')
+                     $query = "UPDATE users SET Role = 'subscriber'
+                               WHERE Id = $update_user_id";
+                
+                else
+                    $query = "UPDATE users SET Role = 'admin'
+                               WHERE Id = $update_user_id";
+               
                 
                 $update_query = mysqli_query($connection, $query);
                 confirm_query($update_query);
-                header("Location: comments.php");
+                header("Location: users.php");
             }
         ?>
                   
-        <?php
-            //Approve functionality for a comment in admin panel
-            if(isset($_GET['approve'])){
-                 $update_comment_id = $_GET['approve'];
-                $query = "UPDATE comments SET Status = 'approved'
-                WHERE Id = $update_comment_id";
-                
-                $update_query = mysqli_query($connection, $query);
-                confirm_query($update_query);
-                header("Location: comments.php");
-            }
-        ?>
                    
         <?php
-            //Delete functionality for a comment in admin panel
+            //Delete functionality for a user in admin panel
+            //TODO implement logical delete (add colum in db IsDeleted/IsDisabled)
+            //Here you set that column to true and populate table above with just IsDeleted == false
             if(isset($_GET['delete'])){
                 $user_id_delete = $_GET['delete'];
                 $query = "DELETE FROM users WHERE Id = $user_id_delete";

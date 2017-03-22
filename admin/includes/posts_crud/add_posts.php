@@ -2,7 +2,7 @@
     //Get data from form and insert it into DB
     //Redirect admin to posts.php which triggers view_all_posts.php
     if(isset($_POST['admin_create_post'])){
-        
+        global $connection;
         $post_title = $_POST['post_title'];
         $post_author = $_POST['post_author'];
         $post_category = $_POST['post_category'];

@@ -21,6 +21,7 @@
                             //Delete and edit functionality added
                                 $query = "SELECT *, p.Id as PostId FROM posts AS p
                                 INNER JOIN category AS c ON c.Id = p.CategoryId";
+                                global $connection;
                                 $select_posts = mysqli_query($connection, $query);
     
                         while($row = mysqli_fetch_assoc($select_posts)){
