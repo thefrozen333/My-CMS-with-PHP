@@ -1,0 +1,5 @@
+CMS DB v1
+Posts, Categories, Comments, Users with some data in them
+
+-------------------------------------------------------------------------------------------------
+
