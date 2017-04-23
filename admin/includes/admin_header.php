@@ -2,6 +2,8 @@
 include "../includes/db.php";
 include "utilities/functions.php";
 ob_start();
+session_start();
+
 ?>
 <head>
 

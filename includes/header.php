@@ -1,6 +1,7 @@
 <head>
     <?php include "includes/db.php";
-          include "admin/includes/utilities/functions.php"?>
+          include "admin/includes/utilities/functions.php";
+          session_start();?>
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

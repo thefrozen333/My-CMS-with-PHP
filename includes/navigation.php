@@ -16,16 +16,13 @@
                 <ul class="nav navbar-nav">
                  
                    
-                  
-                    <li>
-                        <a href="admin">Admin</a>
-                    </li>
-      <!--          <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li> -->
+                 
+                <?php 
+                    if(isset($_SESSION['user_role'])){
+                        if($_SESSION['user_role'] == 'admin'){ 
+                            echo "<li> <a href='admin'>Admin</a> </li>"; 
+                        }
+                }?> 
                     
                    
                    <?php 
@@ -41,8 +38,24 @@
                         
                         
                     ?>
-                   
-                   
+             <?php 
+            //Include dynamically dropdown for the the user with profile, logout if he has logged in
+                if(isset($_SESSION['username'])){
+               echo "<li class='dropdown'>
+                    <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user'></i>  {$_SESSION['firstname']} {$_SESSION['lastname']} <b class='caret'></b></a>
+                    <ul class='dropdown-menu'>
+                        <li>
+                            <a href='#'><i class='fa fa-fw fa-user'></i> Profile</a>
+                        </li>
+                  
+                             <li class='divider'></li>
+                        <li>
+                            <a href='includes/logout.php'><i class='fa fa-fw fa-power-off'></i> Log Out</a>
+                        </li>"; 
+                }?> 
+                        
+                    </ul>
+                </li>
                    
                    
                 </ul>

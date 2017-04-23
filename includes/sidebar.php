@@ -15,8 +15,17 @@
              <!-- /.input-group -->
          </div>
 
-   
-    
+     
+     
+     
+      <!-- Login -->
+     
+     <?php 
+        if(!isset($_SESSION['username'])){
+            include "login-form.php";
+        }
+     ?>
+     
          <!-- Blog Categories Well -->
          <div class="well">
              <h4>Blog Categories</h4>
