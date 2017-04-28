@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include "includes/header.php"
-      include "admin/includes/utilities/functions.php";
+<?php include "includes/header.php";
   ?>
 
 <body>

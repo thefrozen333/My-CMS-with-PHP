@@ -59,11 +59,13 @@ function delete_category(){
     }                                       
 }
 
-function funny_image(){
- $image = '<img src="http://wallpaper.pickywallpapers.com/1400x1050/nyan-cat-cool-art.jpg" alt="some_text" style=height:900px;>';
-
-
-  echo $image;
+//Used for the dashboard view in the admin page(gets the number of rows and echoes a div)
+function tableRowCount($tableName){
+    global $connection;                    
+    $query = "SELECT * FROM $tableName";
+    $get_table_data = mysqli_query($connection, $query);
+    $table_rows_count = mysqli_num_rows($get_table_data);
+    return $table_rows_count;
 }
 
 ?>

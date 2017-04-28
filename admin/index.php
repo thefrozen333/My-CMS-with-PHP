@@ -25,7 +25,8 @@
                     </div>
                 </div>
                 <!-- /.row -->
-                <?php funny_image(); ?>
+                <?php include "includes/partial_views/admin_widgets.php"; ?>
+                
                 
             </div>
             <!-- /.container-fluid -->
